@@ -17,6 +17,7 @@ endif()
 add_library(sqlite3 STATIC
     ${CMAKE_SOURCE_DIR}/lib/sqlite3.c
 )
+set_target_properties(sqlite3 PROPERTIES LINKER_LANGUAGE C)
 target_include_directories(sqlite3 PUBLIC ${CMAKE_SOURCE_DIR}/lib)
 
 # Main executable
