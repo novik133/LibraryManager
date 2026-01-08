@@ -2,10 +2,11 @@
 # Author: Dawid Papaj
 
 cmake_minimum_required(VERSION 3.15)
-project(LibraryManager VERSION 1.0 LANGUAGES CXX)
+project(LibraryManager VERSION 1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_STANDARD 11)
 
 # Windows-specific settings
 if(WIN32)
@@ -13,15 +14,15 @@ if(WIN32)
     add_definitions(-DUNICODE -D_UNICODE)
 endif()
 
-# Main executable with SQLite3 compiled directly
+# SQLite3 - embedded as object library
+add_library(sqlite3 OBJECT lib/sqlite3.c)
+target_include_directories(sqlite3 PUBLIC ${CMAKE_SOURCE_DIR}/lib)
+
+# Main executable
 set(SOURCES
     src/main.cpp
     src/database.cpp
-    lib/sqlite3.c
 )
-
-# Compile sqlite3.c as C++
-set_source_files_properties(lib/sqlite3.c PROPERTIES LANGUAGE CXX)
 
 set(HEADERS
     src/database.h
@@ -43,6 +44,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
+    sqlite3
     comctl32
     comdlg32
 )

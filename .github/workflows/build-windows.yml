@@ -16,9 +16,7 @@ jobs:
 
     - name: Skonfiguruj CMake
       # Tworzymy folder 'build' i przygotowujemy projekt
-      run: |
-        if (Test-Path build) { Remove-Item -Recurse -Force build }
-        cmake -B build
+      run: cmake -B build -G "Visual Studio 17 2022" -A x64
 
     - name: Kompilacja (Build)
       # Kompilujemy projekt w trybie Release
