@@ -1,0 +1,101 @@
+/*
+ * Library Manager - Resource Script
+ * Author: Dawid Papaj
+ */
+
+#include <windows.h>
+#include "resource.h"
+
+// Icon
+IDI_APPICON ICON "app.ico"
+
+// Menu
+IDR_MAINMENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Add Book\tCtrl+N", ID_FILE_ADDBOOK
+        MENUITEM "&Edit Book\tCtrl+E", ID_FILE_EDITBOOK
+        MENUITEM "&Delete Book\tDel", ID_FILE_DELETEBOOK
+        MENUITEM SEPARATOR
+        MENUITEM "&Search...\tCtrl+F", ID_FILE_SEARCH
+        MENUITEM "&Refresh\tF5", ID_FILE_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit", ID_FILE_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About Library Manager", ID_HELP_ABOUT
+    END
+END
+
+// Book Dialog
+IDD_BOOKDIALOG DIALOGEX 0, 0, 280, 220
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Book Details"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Author:", -1, 10, 15, 50, 8
+    EDITTEXT        2001, 70, 12, 200, 14, ES_AUTOHSCROLL
+    
+    LTEXT           "Title:", -1, 10, 35, 50, 8
+    EDITTEXT        2002, 70, 32, 200, 14, ES_AUTOHSCROLL
+    
+    LTEXT           "Year:", -1, 10, 55, 50, 8
+    EDITTEXT        2003, 70, 52, 60, 14, ES_AUTOHSCROLL | ES_NUMBER
+    
+    LTEXT           "Pages:", -1, 10, 75, 50, 8
+    EDITTEXT        2004, 70, 72, 60, 14, ES_AUTOHSCROLL | ES_NUMBER
+    
+    LTEXT           "Publisher:", -1, 10, 95, 50, 8
+    EDITTEXT        2005, 70, 92, 200, 14, ES_AUTOHSCROLL
+    
+    LTEXT           "Photo:", -1, 10, 115, 50, 8
+    PUSHBUTTON      "Browse...", 2006, 70, 112, 60, 14
+    LTEXT           "", 2007, 140, 115, 130, 8
+    
+    DEFPUSHBUTTON   "OK", IDOK, 160, 195, 50, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 220, 195, 50, 14
+END
+
+// Search Dialog
+IDD_SEARCHDIALOG DIALOGEX 0, 0, 280, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Search Books"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Author:", -1, 10, 15, 50, 8
+    EDITTEXT        2001, 70, 12, 200, 14, ES_AUTOHSCROLL
+    
+    LTEXT           "Title:", -1, 10, 35, 50, 8
+    EDITTEXT        2002, 70, 32, 200, 14, ES_AUTOHSCROLL
+    
+    LTEXT           "Year From:", -1, 10, 55, 50, 8
+    EDITTEXT        2008, 70, 52, 60, 14, ES_AUTOHSCROLL | ES_NUMBER
+    
+    LTEXT           "Year To:", -1, 140, 55, 40, 8
+    EDITTEXT        2009, 190, 52, 60, 14, ES_AUTOHSCROLL | ES_NUMBER
+    
+    LTEXT           "Publisher:", -1, 10, 75, 50, 8
+    EDITTEXT        2005, 70, 72, 200, 14, ES_AUTOHSCROLL
+    
+    LTEXT           "Leave fields empty to ignore them in search.", -1, 10, 100, 260, 8
+    
+    DEFPUSHBUTTON   "Search", IDOK, 160, 155, 50, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 220, 155, 50, 14
+END
+
+// About Dialog
+IDD_ABOUTDIALOG DIALOGEX 0, 0, 220, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Library Manager"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            IDI_APPICON, -1, 15, 15, 20, 20
+    LTEXT           "Library Manager", -1, 50, 15, 150, 8
+    LTEXT           "Version 1.0", -1, 50, 28, 150, 8
+    LTEXT           "Author: Dawid Papaj", -1, 50, 41, 150, 8
+    LTEXT           "A simple library management application", -1, 50, 54, 150, 8
+    LTEXT           "with SQLite database integration.", -1, 50, 64, 150, 8
+    DEFPUSHBUTTON   "OK", IDOK, 85, 80, 50, 14
+END

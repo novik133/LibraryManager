@@ -1,0 +1,30 @@
+name: Build LibraryManager Windows
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Pobierz kod repozytorium
+      uses: actions/checkout@v4
+
+    - name: Skonfiguruj CMake
+      # Tworzymy folder 'build' i przygotowujemy projekt
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+    - name: Kompilacja (Build)
+      # Kompilujemy projekt w trybie Release
+      run: cmake --build build --config Release
+
+    - name: Prześlij gotową aplikację
+      uses: actions/upload-artifact@v4
+      with:
+        name: DawidLibrary-Windows-Binary
+        # GitHub szuka pliku .exe w folderze Release
+        path: build/Release/LibraryManager.exe

@@ -1,0 +1,16 @@
+# Build outputs
+build/
+*.obj
+*.o
+*.lib
+
+# IDE files
+.vs/
+*.vcxproj.user
+.idea/
+
+# Database files
+*.db
+
+# Installer output
+LibraryManager_Setup.exe
