@@ -13,11 +13,11 @@ if(WIN32)
     add_definitions(-DUNICODE -D_UNICODE)
 endif()
 
-# SQLite3 - embedded
+# SQLite3 - embedded (compiled as C++)
 add_library(sqlite3 STATIC
     ${CMAKE_SOURCE_DIR}/lib/sqlite3.c
 )
-set_target_properties(sqlite3 PROPERTIES LINKER_LANGUAGE C)
+set_source_files_properties(${CMAKE_SOURCE_DIR}/lib/sqlite3.c PROPERTIES LANGUAGE CXX)
 target_include_directories(sqlite3 PUBLIC ${CMAKE_SOURCE_DIR}/lib)
 
 # Main executable
