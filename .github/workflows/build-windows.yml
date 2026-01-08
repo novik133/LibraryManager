@@ -16,7 +16,9 @@ jobs:
 
     - name: Skonfiguruj CMake
       # Tworzymy folder 'build' i przygotowujemy projekt
-      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+      run: |
+        if (Test-Path build) { Remove-Item -Recurse -Force build }
+        cmake -B build
 
     - name: Kompilacja (Build)
       # Kompilujemy projekt w trybie Release
